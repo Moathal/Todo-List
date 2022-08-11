@@ -123,6 +123,7 @@ div > textarea.description {
   resize: none;
   outline: none;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .footer {
