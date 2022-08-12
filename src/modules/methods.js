@@ -33,8 +33,7 @@ export default class methodsTasks {
   }
 
   addTask(description, completed, index) {
-    let object;
-      object = new Task(description, completed, index + 1);
+    const object = new Task(description, completed, index + 1);
     this.tasks.push(object);
   }
 
