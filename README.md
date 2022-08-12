@@ -7,10 +7,7 @@
 ## Built With
 
 - HTML, CSS & JavaScript.
-
-## Live Demo
-
-[Live Demo Link] https://moathal.github.io/Todo-List/
+- webpack, bootstrap, fontawesome
 
 
 ## Getting Started
@@ -22,11 +19,6 @@
 
 
 ## Authors
-
-👤 **Suzana marsela**
-
-- GitHub: [@githubhandle](https://github.com/Suzi216)
-
 
 👤 **Mo'athal S. Kachi**
 
