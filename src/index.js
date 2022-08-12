@@ -13,8 +13,8 @@ methods.resetList(tasksList);
 
 newDescription.addEventListener('keydown', (e) => {
   const description = newDescription.value;
-  e.preventDefault();
   if (description.length > 0 && e.code === 'Enter') {
+    e.preventDefault();
     methods.addTask(description, false, methods.tasks.length);
     methods.resetList(tasksList);
     localStorage.setItem('tasks', JSON.stringify(methods.tasks));

@@ -34,11 +34,7 @@ export default class methodsTasks {
 
   addTask(description, completed, index) {
     let object;
-    if (index > 0) {
-      object = new Task(description, completed, index);
-    } else {
       object = new Task(description, completed, index + 1);
-    }
     this.tasks.push(object);
   }
 
