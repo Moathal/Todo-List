@@ -6,6 +6,7 @@ const methods = new MethodsTasks();
 const tasksList = document.querySelector('.tasks');
 const newDescription = document.getElementById('i--1');
 const submitBtn = document.getElementById('a--1');
+const removeChecked = document.getElementById('removeChecked');
 
 if (localStorage.getItem('tasks')) methods.tasks = JSON.parse(localStorage.getItem('tasks'));
 
@@ -29,6 +30,16 @@ submitBtn.addEventListener('click', () => {
     methods.resetList(tasksList);
     newDescription.value = '';
     localStorage.setItem('tasks', JSON.stringify(methods.tasks));
+  }
+});
+
+removeChecked.addEventListener('click', () => {
+  const checkedDevs = document.querySelectorAll('.py-1.li.checked');
+  if (checkedDevs.length > 0) {
+    checkedDevs.forEach((dev) => {
+      const index = dev.id.replace('d-', '');
+      methods.removeTask(tasksList, index, dev);
+    });
   }
 });
 

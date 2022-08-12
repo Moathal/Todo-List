@@ -28,6 +28,7 @@ export default class methodsTasks {
         checkbox.setAttribute('checked', '');
         input.classList.add('text-decoration-line-through');
         input.classList.add('text-secondary');
+        div.classList.add('checked');
       }
     });
   }
@@ -41,16 +42,19 @@ export default class methodsTasks {
     const index = id.replace('c-', '');
     const checkbox = document.getElementById(id);
     const input = document.getElementById(`t-${index}`);
+    const div = document.getElementById(`d-${index}`);
     if (checkbox.hasAttribute('checked')) {
       input.classList.remove('text-secondary');
       input.classList.remove('text-decoration-line-through');
       checkbox.removeAttribute('checked');
       this.tasks[index].completed = false;
+      div.classList.remove('checked');
     } else {
       input.classList.add('text-decoration-line-through');
       input.classList.add('text-secondary');
       checkbox.setAttribute('checked', '');
       this.tasks[index].completed = true;
+      div.classList.add('checked');
     }
   }
 
