@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist",
     "start": "webpack serve --open",
     "build": "webpack"
   },
@@ -18,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/Moathal/Todo-List/issues"
   },
-  "homepage": "https://github.com/Moathal/Todo-List#readme",
+  "homepage": "https://Moathal.github.io/Todo-List",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
@@ -39,6 +40,7 @@
     "webpack-dev-server": "^4.10.0"
   },
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "webpack.config.js": "^0.0.0"
   }
 }
