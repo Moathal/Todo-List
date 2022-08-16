@@ -28,7 +28,6 @@ submitBtn.addEventListener('click', () => {
     methods.addTask(description, false, methods.tasks.length);
     methods.resetList(tasksList);
     newDescription.value = '';
-    
   }
 });
 

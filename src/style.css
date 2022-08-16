@@ -68,7 +68,6 @@ input.addTaskInput,
   background-color: white;
 }
 
-
 input:focus {
   outline: none !important;
   background: none !important;
