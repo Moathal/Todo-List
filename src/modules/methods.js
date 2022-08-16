@@ -31,6 +31,7 @@ export default class methodsTasks {
         div.classList.add('checked');
       }
     });
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
   addTask(description, completed, index) {
@@ -44,14 +45,12 @@ export default class methodsTasks {
     const input = document.getElementById(`t-${index}`);
     const div = document.getElementById(`d-${index}`);
     if (checkbox.hasAttribute('checked')) {
-      input.classList.remove('text-secondary');
-      input.classList.remove('text-decoration-line-through');
+      input.classList.remove('checkedText');
       checkbox.removeAttribute('checked');
       this.tasks[index].completed = false;
       div.classList.remove('checked');
     } else {
-      input.classList.add('text-decoration-line-through');
-      input.classList.add('text-secondary');
+      input.classList.add('checkedText');
       checkbox.setAttribute('checked', '');
       this.tasks[index].completed = true;
       div.classList.add('checked');

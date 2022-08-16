@@ -50,6 +50,12 @@ form {
   padding-right: 12px !important;
 }
 
+input {
+  border: none;
+  background: transparent;
+  width: 90%;
+}
+
 input.addTaskInput,
 .addTaskButton {
   height: 25px;
@@ -62,11 +68,6 @@ input.addTaskInput,
   background-color: white;
 }
 
-input {
-  border: none;
-  background: transparent;
-  width: 90%;
-}
 
 input:focus {
   outline: none !important;
@@ -129,6 +130,11 @@ div > input.description {
 .footer {
   border-bottom-right-radius: 0.2em !important;
   border-bottom-left-radius: 0.2em !important;
+}
+
+.checkedText {
+  text-decoration: line-through;
+  color: rgb(146, 146, 146);
 }
 
 .move-delete {

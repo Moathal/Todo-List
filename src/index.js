@@ -6,7 +6,7 @@ const methods = new MethodsTasks();
 const tasksList = document.querySelector('.tasks');
 const newDescription = document.getElementById('i--1');
 const submitBtn = document.getElementById('a--1');
-const removeChecked = document.getElementById('removeChecked');
+const removeCompleted = document.getElementById('removeChecked');
 
 if (localStorage.getItem('tasks')) methods.tasks = JSON.parse(localStorage.getItem('tasks'));
 
@@ -18,7 +18,6 @@ newDescription.addEventListener('keydown', (e) => {
     e.preventDefault();
     methods.addTask(description, false, methods.tasks.length);
     methods.resetList(tasksList);
-    localStorage.setItem('tasks', JSON.stringify(methods.tasks));
     newDescription.value = '';
   }
 });
@@ -29,16 +28,17 @@ submitBtn.addEventListener('click', () => {
     methods.addTask(description, false, methods.tasks.length);
     methods.resetList(tasksList);
     newDescription.value = '';
-    localStorage.setItem('tasks', JSON.stringify(methods.tasks));
+    
   }
 });
 
-removeChecked.addEventListener('click', () => {
+removeCompleted.addEventListener('click', () => {
   const checkedDevs = document.querySelectorAll('.py-1.li.checked');
   if (checkedDevs.length > 0) {
     checkedDevs.forEach((dev) => {
       const index = dev.id.replace('d-', '');
       methods.removeTask(tasksList, index, dev);
+      localStorage.setItem('tasks', JSON.stringify(methods.tasks));
     });
   }
 });
@@ -54,7 +54,6 @@ tasksList.addEventListener('click', (e) => {
     const task = document.getElementById(`d-${idIndex}`);
     methods.removeTask(tasksList, idIndex, task);
     methods.resetList(tasksList);
-    localStorage.setItem('tasks', JSON.stringify(methods.tasks));
   }
 });
 
