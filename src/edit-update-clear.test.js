@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
- //import e from './__mocks__/e.js';
+// import e from './__mocks__/e.js';
 import MethodsTasks from './modules/methods.js';
 
 document.body.innerHTML = `<main class="row d-flex bg-light flex column align-items-center justify-content-start todolist">
@@ -23,30 +23,29 @@ document.body.innerHTML = `<main class="row d-flex bg-light flex column align-it
 </section>
 </main>`;
 
-
 const methods = new MethodsTasks();
 const tasksList = document.querySelector('.tasks');
-methods.tasks = [{description:'aaaaaaa', completed:false, index:1},{description:'bbbbbb', completed:true, index:2}];
+methods.tasks = [{ description: 'aaaaaaa', completed: false, index: 1 }, { description: 'bbbbbb', completed: true, index: 2 }];
 methods.resetList(tasksList);
 
 describe('test update completed status', () => {
   test('update completed status from false to true', () => {
     methods.clickCheckbox('c-0');
-    expect(methods.tasks[0].completed).toBeTruthy;
-    expect((JSON.parse(localStorage.getItem('tasks'))[0].completed)).toBeTruthy;
+    expect(methods.tasks[0].completed).toBe(true);
+    expect((JSON.parse(localStorage.getItem('tasks'))[0].completed)).toBe(true);
   });
 
   test('update completed status from true to false', () => {
     methods.clickCheckbox('c-1');
-    expect(methods.tasks[1].completed).toBeFalsy;
-    expect((JSON.parse(localStorage.getItem('tasks'))[1].completed)).toBeFalsy;
+    expect(methods.tasks[1].completed).toBe(false);
+    expect((JSON.parse(localStorage.getItem('tasks'))[1].completed)).toBe(false);
   });
 });
 
-describe('test edit task description', () => { 
+describe('test edit task description', () => {
   test('edit task description from aaaaaaa to zzzzzzz', () => {
     document.getElementById('t-0').value = 'zzzzzzz';
-    methods.editTaskDescription('t-0',0);
+    methods.editTaskDescription('t-0', 0);
     expect(methods.tasks[0].description).toBe('zzzzzzz');
     expect((JSON.parse(localStorage.getItem('tasks'))[0].description)).toBe('zzzzzzz');
   });
@@ -55,16 +54,16 @@ describe('test edit task description', () => {
 describe('add and delete tasks', () => {
   test('add a task', () => {
     methods.addTask(tasksList, '3rd3rd3rd', true, 3);
-    const tasks = document.querySelectorAll('.py-1.li')
+    const tasks = document.querySelectorAll('.py-1.li');
     expect(tasks).toHaveLength(3);
     expect(methods.tasks).toHaveLength(3);
     expect(JSON.parse(localStorage.getItem('tasks'))).toHaveLength(3);
   });
 
   test('delete a task', () => {
-    const task = document.getElementById('d-2')
+    const task = document.getElementById('d-2');
     methods.removeTask(tasksList, 2, task);
-    const tasks = document.querySelectorAll('.py-1.li')
+    const tasks = document.querySelectorAll('.py-1.li');
     expect(tasks).toHaveLength(2);
     expect(methods.tasks).toHaveLength(2);
     expect(JSON.parse(localStorage.getItem('tasks'))).toHaveLength(2);
@@ -80,4 +79,3 @@ describe('add and delete tasks', () => {
     expect(JSON.parse(localStorage.getItem('tasks'))[0].description).toBe('bbbbbb');
   });
 });
-

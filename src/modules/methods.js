@@ -66,12 +66,12 @@ export default class methodsTasks {
   }
 
   editTaskDescription(id, idIndex) {
-    const input =document.getElementById(id);
+    const input = document.getElementById(id);
     this.tasks[idIndex].description = input.value;
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
-  removeCompletedTasks (tasksList){
+  removeCompletedTasks(tasksList) {
     const checkedDevs = document.querySelectorAll('.py-1.li.checked');
     if (checkedDevs.length > 0) {
       checkedDevs.forEach((dev) => {
