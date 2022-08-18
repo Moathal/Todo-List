@@ -63,6 +63,12 @@ export default class methodsTasks {
     this.rearrangeOrder();
   }
 
+  editTaskDescription(id, idIndex) {
+    const input =document.getElementById(id);
+    this.tasks[idIndex].description = input.value;
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
   rearrangeOrder() {
     this.tasks = this.tasks.sort((a, b) => a.index - b.index);
     for (let i = 0; i < this.tasks.length; i += 1) this.tasks[i].index = i + 1;

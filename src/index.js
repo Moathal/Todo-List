@@ -74,7 +74,6 @@ tasksList.addEventListener('change', (e) => {
   const element = e.target.id.substring(0, 2);
   const idIndex = e.target.id.substring(2, e.target.id.length);
   if (element === 't-') {
-    methods.tasks[idIndex].description = e.target.value;
-    localStorage.setItem('tasks', JSON.stringify(methods.tasks));
+    editTaskDescription(e.target.id, idIndex)
   }
 });
