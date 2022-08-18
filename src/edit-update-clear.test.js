@@ -25,12 +25,11 @@ document.body.innerHTML = `<main class="row d-flex bg-light flex column align-it
 
 
 const methods = new MethodsTasks();
+const tasksList = document.querySelector('.tasks');
 methods.tasks = [{description:'aaaaaaa', completed:false, index:1},{description:'bbbbbb', completed:true, index:2}];
-methods.resetList(document.querySelector('.tasks'));
-
+methods.resetList(tasksList);
 
 describe('test update completed status', () => {
-
   test('update completed status from false to true', () => {
     methods.clickCheckbox('c-0');
     expect(methods.tasks[0].completed).toBeTruthy;
@@ -44,9 +43,7 @@ describe('test update completed status', () => {
   });
 });
 
-
-describe('test edit task description', () => {
-  
+describe('test edit task description', () => { 
   test('edit task description from aaaaaaa to zzzzzzz', () => {
     document.getElementById('t-0').value = 'zzzzzzz';
     methods.editTaskDescription('t-0',0);
@@ -55,11 +52,32 @@ describe('test edit task description', () => {
   });
 });
 
+describe('add and delete tasks', () => {
+  test('add a task', () => {
+    methods.addTask(tasksList, '3rd3rd3rd', true, 3);
+    const tasks = document.querySelectorAll('.py-1.li')
+    expect(tasks).toHaveLength(3);
+    expect(methods.tasks).toHaveLength(3);
+    expect(JSON.parse(localStorage.getItem('tasks'))).toHaveLength(3);
+  });
 
+  test('delete a task', () => {
+    const task = document.getElementById('d-2')
+    methods.removeTask(tasksList, 2, task);
+    const tasks = document.querySelectorAll('.py-1.li')
+    expect(tasks).toHaveLength(2);
+    expect(methods.tasks).toHaveLength(2);
+    expect(JSON.parse(localStorage.getItem('tasks'))).toHaveLength(2);
+  });
 
-
-
-
-
-
+  test('delete completed tasks', () => {
+    methods.removeCompletedTasks(tasksList);
+    const tasks = document.querySelectorAll('.py-1.li');
+    expect(tasks).toHaveLength(1);
+    expect(methods.tasks).toHaveLength(1);
+    expect(methods.tasks[0].description).toBe('bbbbbb');
+    expect(JSON.parse(localStorage.getItem('tasks'))).toHaveLength(1);
+    expect(JSON.parse(localStorage.getItem('tasks'))[0].description).toBe('bbbbbb');
+  });
+});
 
