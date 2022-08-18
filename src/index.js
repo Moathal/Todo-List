@@ -16,8 +16,7 @@ newDescription.addEventListener('keydown', (e) => {
   const description = newDescription.value;
   if (description.length > 0 && e.code === 'Enter') {
     e.preventDefault();
-    methods.addTask(description, false, methods.tasks.length);
-    methods.resetList(tasksList);
+    methods.addTask(tasksList, description, false, methods.tasks.length);
     newDescription.value = '';
   }
 });
@@ -26,20 +25,12 @@ submitBtn.addEventListener('click', () => {
   const description = newDescription.value;
   if (description.length > 0) {
     methods.addTask(description, false, methods.tasks.length);
-    methods.resetList(tasksList);
     newDescription.value = '';
   }
 });
 
 removeCompleted.addEventListener('click', () => {
-  const checkedDevs = document.querySelectorAll('.py-1.li.checked');
-  if (checkedDevs.length > 0) {
-    checkedDevs.forEach((dev) => {
-      const index = dev.id.replace('d-', '');
-      methods.removeTask(tasksList, index, dev);
-      localStorage.setItem('tasks', JSON.stringify(methods.tasks));
-    });
-  }
+  methods.removeCompletedTasks(tasksList);
 });
 
 tasksList.addEventListener('click', (e) => {
@@ -74,7 +65,6 @@ tasksList.addEventListener('change', (e) => {
   const element = e.target.id.substring(0, 2);
   const idIndex = e.target.id.substring(2, e.target.id.length);
   if (element === 't-') {
-    methods.tasks[idIndex].description = e.target.value;
-    localStorage.setItem('tasks', JSON.stringify(methods.tasks));
+    methods.editTaskDescription(e.target.id, idIndex);
   }
 });

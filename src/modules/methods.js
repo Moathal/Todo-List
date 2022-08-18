@@ -34,9 +34,10 @@ export default class methodsTasks {
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
-  addTask(description, completed, index) {
+  addTask(tasksList, description, completed, index) {
     const object = new Task(description, completed, index + 1);
     this.tasks.push(object);
+    this.resetList(tasksList);
   }
 
   clickCheckbox(id) {
@@ -61,6 +62,23 @@ export default class methodsTasks {
     this.tasks.splice(idIndex, 1);
     tasksList.removeChild(task);
     this.rearrangeOrder();
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  editTaskDescription(id, idIndex) {
+    const input = document.getElementById(id);
+    this.tasks[idIndex].description = input.value;
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  removeCompletedTasks(tasksList) {
+    const checkedDevs = document.querySelectorAll('.py-1.li.checked');
+    if (checkedDevs.length > 0) {
+      checkedDevs.forEach((dev) => {
+        const index = dev.id.replace('d-', '');
+        this.removeTask(tasksList, index, dev);
+      });
+    }
   }
 
   rearrangeOrder() {
