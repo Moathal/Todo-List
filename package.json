@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "deploy": "gh-pages -d dist",
     "start": "webpack serve --open",
     "build": "webpack"
@@ -21,7 +21,10 @@
   },
   "homepage": "https://Moathal.github.io/Todo-List",
   "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^28.1.3",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -29,6 +32,8 @@
     "express": "^4.18.1",
     "hint": "^7.1.1",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3",
     "style-loader": "^3.3.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
